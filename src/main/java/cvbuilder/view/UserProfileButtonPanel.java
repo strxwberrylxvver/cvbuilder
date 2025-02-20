@@ -1,6 +1,5 @@
 package cvbuilder.view;
 
-import cvbuilder.model.User;
 import cvbuilder.model.CVData;
 
 import javax.swing.*;
@@ -10,7 +9,7 @@ import java.awt.event.ActionListener;
 public class UserProfileButtonPanel extends JPanel implements ActionListener {
     JButton display = new JButton("Display Profile");
     JButton addp = new JButton("Add Profile");
-    User u;
+    //User u;
 
     public UserProfileButtonPanel()
     {
@@ -25,16 +24,16 @@ public class UserProfileButtonPanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         switch(e.getActionCommand()){
-            case "Display Profile":
-                if (CVData.getInstance().getSelectedUser() != null)
-                {
-                    System.out.println(CVData.getInstance().getSelectedUser().getFormattedText());
-                    JOptionPane.showMessageDialog(this, "Hello, display coming soon" );
-                }
-                else {
-                    System.out.println("Null - No User Selected");
-                }
-                break;
+//            case "Display Profile":
+//                if (CVData.getInstance().getSelectedUser() != null)
+//                {
+//                    System.out.println(CVData.getInstance().getSelectedUser().getFormattedText());
+//                    JOptionPane.showMessageDialog(this, "Hello, display coming soon" );
+//                }
+//                else {
+//                    System.out.println("Null - No User Selected");
+//                }
+//                break;
 
             case "Add Profile":
                 JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);

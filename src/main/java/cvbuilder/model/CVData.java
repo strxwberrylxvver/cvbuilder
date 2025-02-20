@@ -12,9 +12,7 @@ import java.util.ArrayList;
 
 public class CVData {
     
-    private ArrayList<User> users = new ArrayList<>();
     private static CVData instance;
-    private User selectedUser = null;
     private ArrayList<String> names = new ArrayList<>();
     private ArrayList<String> titles = new ArrayList<>();
     private ArrayList<String> emails = new ArrayList<>();
@@ -95,7 +93,7 @@ public void readSuperCsv(String filename)
     System.out.println(titles);
     System.out.println(emails);
 
-//}
+
 //    public void writeSuperCsv(String filename)
 //    {
 //        try(
@@ -112,5 +110,4 @@ public void readSuperCsv(String filename)
 //            e.printStackTrace();
 //        }
 //    }
-
-}
+}}

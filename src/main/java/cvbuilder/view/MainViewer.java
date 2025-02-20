@@ -12,21 +12,10 @@ private static MainViewer instance;
     JPanel titlepanel = new JPanel();
     JPanel emailpanel = new JPanel();
     JPanel namepanel = new JPanel();
+    JPanel references = new JPanel();
     JTabbedPane tabs = new JTabbedPane();
+    JTabbedPane usertab = new JTabbedPane();
     UserProfileButtonPanel upbpanel = new UserProfileButtonPanel();
-
-    public JPanel getNamePanel()
-    {
-        return this.namepanel;
-    }
-    public JPanel getEmailPanel()
-    {
-        return this.emailpanel;
-    }
-    public JPanel getTitlePanel()
-    {
-        return this.titlepanel;
-    }
 
     public static MainViewer getInstance(){
         if (instance == null)
@@ -44,14 +33,20 @@ private static MainViewer instance;
         new addMenu(this);
         this.add(upbpanel, BorderLayout.SOUTH);
         
-        tabs.addTab("User Title", titlepanel);
-        tabs.addTab("User Email", emailpanel);
-        tabs.add(namepanel, "User Name");
-        this.add(tabs, BorderLayout.CENTER);
+        tabs.addTab("User Name",namepanel);
+        tabs.addTab("User Title",titlepanel);
+        tabs.add(emailpanel,"User Email");
+        usertab.add(tabs, "User");
+        usertab.add(references,"References");
+
+
+        this.add(usertab, BorderLayout.CENTER);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         }
 
+    
+    
         public void addPanel() {
         if (titlepanel != null || emailpanel != null || namepanel != null) {
             titlepanel.removeAll();
@@ -66,9 +61,9 @@ private static MainViewer instance;
         emailpanel.setLayout(new GridLayout(0, 1));
         emailpanel.setBorder(BorderFactory.createTitledBorder("Email"));
 
-        new addRow("name", namepanel,180);
-        new addRow("title", titlepanel,60);
-        new addRow("email",emailpanel,200);
+        //new addRow("name", namepanel,180);
+        //new addRow("title", titlepanel,60);
+        //new addRow("email",emailpanel,200);
 
         titlepanel.revalidate();
         emailpanel.revalidate();

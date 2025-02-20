@@ -13,7 +13,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import cvbuilder.model.User;
+//import cvbuilder.model.User;
 import cvbuilder.model.CVData;
 
 public class addMenu extends JMenuBar implements ActionListener{
@@ -56,10 +56,10 @@ public class addMenu extends JMenuBar implements ActionListener{
                 {
                     System.out.println("You chose to open this file: " + 
                             chooser.getSelectedFile().getName());
-                    for (User u : CVData.getInstance().getUsers())
-                    {
-                        System.out.println(u);
-                    }
+//                    for (User u : CVData.getInstance().getUsers())
+//                    {
+//                        System.out.println(u);
+//                    }
                 }
                 break;
 
@@ -73,7 +73,7 @@ public class addMenu extends JMenuBar implements ActionListener{
                 if(returnval == JFileChooser.APPROVE_OPTION) {
                     System.out.println("You chose to save this file: " +
                             choose.getSelectedFile().getName());
-                    CVData.getInstance().writeSuperCsv(choose.getSelectedFile().getName());
+                    //CVData.getInstance().writeSuperCsv(choose.getSelectedFile().getName());
                 }
                 break;
 

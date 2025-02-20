@@ -1,6 +1,6 @@
 package cvbuilder.view;
 
-import cvbuilder.model.User;
+//import cvbuilder.model.User;
 import cvbuilder.model.CVData;
 
 import javax.swing.*;
@@ -64,9 +64,9 @@ public class AddUserDialog extends JDialog implements ActionListener {
                 String n = name.getText().trim();
                 String em = email.getText().trim();
 
-                User newUser = new User(p, t, n, em);
-                CVData.getInstance().addUser(newUser);
-                CVData.getInstance().writeSuperCsv("userprofile.csv");
+               // User newUser = new User(p, t, n, em);
+               // CVData.getInstance().addUser(newUser);
+                //CVData.getInstance().writeSuperCsv("userprofile.csv");
 
                 JOptionPane.showMessageDialog(this, "User added!");
                 dispose();
