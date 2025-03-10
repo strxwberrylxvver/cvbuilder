@@ -11,51 +11,52 @@ import cvbuilder.model.CVData;
 
 
 
-//public class addRow implements ActionListener {
-//    String value = "";
-//    ButtonGroup bg = new ButtonGroup();
-//    JPanel row;
-//
-//    public addRow(String attribute, JPanel panel, int jsize) {
-//
-//            if ("name".equals(attribute)) {
-//                value = u.getName();
-//            } else if ("title".equals(attribute)) {
-//                value = u.getTitle();
-//            } else if ("email".equals(attribute)) {
-//                value = u.getEMail();
-//            } else {
-//                value = "";
-//            }
-//
-//            row = new JPanel();
-//            JRadioButton j = new JRadioButton(value);
-//            JButton e = new JButton("Edit");
-//            JButton d = new JButton("Delete");
-//            row.setBorder(BorderFactory.createTitledBorder(u.getUserProfileID()));
-//
-//            j.setPreferredSize(new Dimension(jsize, 30));
-//            j.addActionListener(this);
-//            j.setActionCommand("Choose");
-//            row.add(j);
-//
-//            e.setPreferredSize(new Dimension(65, 25));
-//            e.addActionListener(this);
-//            e.setActionCommand("Edit");
-//            row.add(e);
-//
-//            d.setPreferredSize(new Dimension(70, 25));
-//            d.addActionListener(this);
-//            d.setActionCommand("Delete");
-//            row.add(d);
-//
-//            bg.add(j);
-//            row.repaint();
-//            panel.add(row, BorderLayout.CENTER);
-//    }
-//
-//    //@Override
-//    public void actionPerformed(ActionEvent e) {
+public class addRow implements ActionListener {
+    String value = "";
+    ButtonGroup bg = new ButtonGroup();
+    JPanel row;
+    JRadioButton j;
+    String word;
+
+    public addRow(String word, String attribute, JPanel panel, int jsize) {
+      this.word = word;
+            if ("name".equals(attribute)) {
+                j = new JRadioButton(word);
+            } else if ("title".equals(attribute)) {
+                j = new JRadioButton(word);
+            } else if ("email".equals(attribute)) {
+                j = new JRadioButton(word);
+            } else {
+                value = "";
+            }
+
+            row = new JPanel();
+            JButton e = new JButton("Edit");
+            JButton d = new JButton("Delete");
+            //row.setBorder(BorderFactory.createTitledBorder(u.getUserProfileID()));
+
+            j.setPreferredSize(new Dimension(jsize, 30));
+            j.addActionListener(this);
+            j.setActionCommand("Choose");
+            row.add(j);
+
+            e.setPreferredSize(new Dimension(65, 25));
+            e.addActionListener(this);
+            e.setActionCommand("Edit");
+            row.add(e);
+
+            d.setPreferredSize(new Dimension(70, 25));
+            d.addActionListener(this);
+            d.setActionCommand("Delete");
+            row.add(d);
+
+            bg.add(j);
+            row.repaint();
+            panel.add(row, BorderLayout.CENTER);
+    
+}
+    @Override
+    public void actionPerformed(ActionEvent e) {
 //
 //        switch (e.getActionCommand()) {
 //
@@ -130,5 +131,6 @@ import cvbuilder.model.CVData;
 ////                    }
 //                break;
 //        }
-//    }
-//
+    }
+}
+

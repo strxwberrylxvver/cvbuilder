@@ -4,6 +4,7 @@
  */
 package cvbuilder.view;
 
+import cvbuilder.model.CVData;
 import java.awt.*;
 import javax.swing.*;
 
@@ -31,7 +32,7 @@ private static MainViewer instance;
 
         this.addPanel();
         new addMenu(this);
-        this.add(upbpanel, BorderLayout.SOUTH);
+        //this.add(upbpanel, BorderLayout.SOUTH);
         
         tabs.addTab("User Name",namepanel);
         tabs.addTab("User Title",titlepanel);
@@ -61,10 +62,21 @@ private static MainViewer instance;
         emailpanel.setLayout(new GridLayout(0, 1));
         emailpanel.setBorder(BorderFactory.createTitledBorder("Email"));
 
-        //new addRow("name", namepanel,180);
-        //new addRow("title", titlepanel,60);
-        //new addRow("email",emailpanel,200);
+        for(int i=0; i<CVData.getInstance().getNames().size();i++)
+        {
+        new addRow(CVData.getInstance().getNames().get(i),"name", namepanel,180);   
+        }
+                
+        for(int i=0; i<CVData.getInstance().getTitles().size();i++)
+        {
+        new addRow(CVData.getInstance().getTitles().get(i),"title", titlepanel,60);   
+        }        
+        for(int i=0; i<CVData.getInstance().getEmails().size();i++)
+        {
+        new addRow(CVData.getInstance().getEmails().get(i),"email",emailpanel,200);   
+        }
 
+        
         titlepanel.revalidate();
         emailpanel.revalidate();
         namepanel.revalidate();
