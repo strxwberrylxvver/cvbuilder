@@ -12,14 +12,17 @@ import cvbuilder.model.CVData;
 
 
 public class addRow implements ActionListener {
-    String value = "";
-    ButtonGroup bg = new ButtonGroup();
-    JPanel row;
-    JRadioButton j;
-    String word;
+    private String value = "";
+    private String attribute;
+    private ButtonGroup bg = new ButtonGroup();
+    private JPanel row;
+    private JRadioButton j;
+    private String word;
 
     public addRow(String word, String attribute, JPanel panel, int jsize) {
       this.word = word;
+      this.attribute = attribute;
+
             if ("name".equals(attribute)) {
                 j = new JRadioButton(word);
             } else if ("title".equals(attribute)) {
@@ -33,7 +36,6 @@ public class addRow implements ActionListener {
             row = new JPanel();
             JButton e = new JButton("Edit");
             JButton d = new JButton("Delete");
-            //row.setBorder(BorderFactory.createTitledBorder(u.getUserProfileID()));
 
             j.setPreferredSize(new Dimension(jsize, 30));
             j.addActionListener(this);
@@ -53,84 +55,54 @@ public class addRow implements ActionListener {
             bg.add(j);
             row.repaint();
             panel.add(row, BorderLayout.CENTER);
-    
+
 }
     @Override
     public void actionPerformed(ActionEvent e) {
-//
-//        switch (e.getActionCommand()) {
-//
-//            case "Delete":
-//                JButton button = (JButton) e.getSource();
-//                JPanel parentPanel = (JPanel) button.getParent();
-//                JRadioButton radioButton = (JRadioButton) parentPanel.getComponent(0);
-//                int response = JOptionPane.showConfirmDialog(null, "Would you like to delete?");
-//                if (response == JOptionPane.YES_OPTION) {
-////                    for (User u : CVData.getInstance().getUsers()) {
-////                        if (u.getName().equals(value) || u.getEMail().equals(value) || u.getTitle().equals(value)) {
-////                            CVData.getInstance().getUsers().remove(u);
-////                            JPanel parentContainer = (JPanel) parentPanel.getParent();
-////                            parentContainer.remove(parentPanel);
-////
-////                            parentContainer.revalidate();
-////                            parentContainer.repaint();
-////                            System.out.println("User deleted: " + u.getName());
-////                            break;
-////                        }
-////                    }
-//                }
-//                //MainViewer.getInstance().addPanel();
-//                //CVData.getInstance().writeSuperCsv("userprofile.csv");
-//                //CVData.getInstance().setSelectedUser(null);
-//                break;
-//
-//            case "Edit":
-//                JButton button2 = (JButton) e.getSource();
-//                JPanel parentPanel2 = (JPanel) button2.getParent();
-//                JRadioButton radioButton2 = (JRadioButton) parentPanel2.getComponent(0);
-//                String input = JOptionPane.showInputDialog(null, "Enter New Text", radioButton2.getText());
-//                if (input != null) {
-//                    radioButton2.setText(input);
-//                    System.out.println("User input: " + input);
-////                    for (User u : CVData.getInstance().getUsers()) {
-////                        if (u.getName().equals(radioButton2.getText())) {
-////                            u.setName(input);
-////                        }
-////                        if (u.getEMail().equals(radioButton2.getText())) {
-////                            u.setEMail(input);
-////                        }
-////                        if (u.getUserProfileID().equals(radioButton2.getText())) {
-////                            u.setUserProfileID(input);
-////                        }
-////                        if (u.getTitle().equals(radioButton2.getText())) {
-////                            u.setTitle(input);
-////                        }
-////                    }
-//                }
-//                else {
-//                    System.out.println("User has cancelled");
-//                }
-//                //CVData.getInstance().writeSuperCsv("userprofile.csv");
-//                break;
-//
-//            case "Choose":
-////                String selected = ((JRadioButton) e.getSource()).getText();
-////                int index= CVData.getInstance().getUsers().indexOf(u);
-////                for (JPanel panel : Arrays.asList(MainViewer.getInstance().getNamePanel(),
-////                           MainViewer.getInstance().getTitlePanel(),
-////                            MainViewer.getInstance().getEmailPanel()))
-////                    {
-////                        for (Component comp : panel.getComponents())
-////                        {
-////                                JPanel rowPanel = (JPanel) comp;
-////                                JRadioButton radioButton3 = (JRadioButton) rowPanel.getComponent(0);
-////                            if (radioButton3.getText().equals(selected)) {
-////                                radioButton3.setSelected(true);
-////                            }
-////                        }
-////                    }
-//                break;
-//        }
+
+        switch (e.getActionCommand()) {
+
+            case "Delete":
+                JButton button = (JButton) e.getSource();
+                JPanel parentPanel = (JPanel) button.getParent();
+                int response = JOptionPane.showConfirmDialog(null, "Would you like to delete?");
+                if (response == JOptionPane.YES_OPTION) {
+                    switch (attribute) {
+                        case "name" -> CVData.getInstance().getNames().remove(value);
+                        case "title" -> CVData.getInstance().getTitles().remove(value);
+                        case "email" -> CVData.getInstance().getEmails().remove(value);
+                    }
+                    JPanel parentContainer = (JPanel) row.getParent();
+                    parentContainer.remove(row);
+                    parentContainer.revalidate();
+                    parentContainer.repaint();
+                            break;
+                    }
+
+                MainViewer.getInstance().addPanel();
+              //  CVData.getInstance().writeSuperCsv("userprofile.csv");
+                break;
+
+            case "Edit":
+                JButton button2 = (JButton) e.getSource();
+                JPanel parentPanel2 = (JPanel) button2.getParent();
+                JRadioButton radioButton2 = (JRadioButton) parentPanel2.getComponent(0);
+                String input = JOptionPane.showInputDialog(null, "Enter New Text", radioButton2.getText());
+                if (input != null) {
+                    radioButton2.setText(input);
+                    System.out.println("User input: " + input);
+
+
+                }
+                //CVData.getInstance().writeSuperCsv("userprofile.csv");
+                break;
+
+            case "Choose":
+                if (j.isSelected()) {
+                    System.out.println("Selected");
+                }
+        break;
+        }
     }
-}
+    }
 

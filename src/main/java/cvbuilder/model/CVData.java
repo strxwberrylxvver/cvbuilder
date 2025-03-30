@@ -11,7 +11,7 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 
 public class CVData {
-    
+
     private static CVData instance;
     private ArrayList<String> names = new ArrayList<>();
     private ArrayList<String> titles = new ArrayList<>();
@@ -40,18 +40,18 @@ public class CVData {
     public void setEmails(ArrayList<String> emails) {
         this.emails = emails;
     }
-    
-    private CVData(){   
+
+    private CVData(){
         this.readSuperCsv("data/cv_repo_3.csv");
     }
-    
+
     public static CVData getInstance(){
         if (instance == null){
             instance =  new CVData();
         }
         return instance;
     }
-    
+
 public void readSuperCsv(String filename)
 {
     try(
@@ -79,7 +79,7 @@ public void readSuperCsv(String filename)
                                 for (int i=2;i<v.length;i++) {
                                     emails.add(v[i]);
                                 }
-                        }        
+                        }
                         }
                     }
                 }
@@ -99,11 +99,9 @@ public void readSuperCsv(String filename)
 //        try(
 //                BufferedWriter bw = new BufferedWriter(new FileWriter(filename)))
 //        {
-//            for (User u: users)
-//            {
+
 //            bw.write(u.getUserProfileID() + "," + u.getTitle() + "," + u.getName() + "," + u.getEMail());
 //            bw.newLine();
-//            }
 //        }
 //        catch(Exception e)
 //        {

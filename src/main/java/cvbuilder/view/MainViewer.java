@@ -16,7 +16,6 @@ private static MainViewer instance;
     JPanel references = new JPanel();
     JTabbedPane tabs = new JTabbedPane();
     JTabbedPane usertab = new JTabbedPane();
-    UserProfileButtonPanel upbpanel = new UserProfileButtonPanel();
 
     public static MainViewer getInstance(){
         if (instance == null)
@@ -32,8 +31,7 @@ private static MainViewer instance;
 
         this.addPanel();
         new addMenu(this);
-        //this.add(upbpanel, BorderLayout.SOUTH);
-        
+
         tabs.addTab("User Name",namepanel);
         tabs.addTab("User Title",titlepanel);
         tabs.add(emailpanel,"User Email");
@@ -47,7 +45,7 @@ private static MainViewer instance;
         }
 
     
-    
+
         public void addPanel() {
         if (titlepanel != null || emailpanel != null || namepanel != null) {
             titlepanel.removeAll();
@@ -62,21 +60,15 @@ private static MainViewer instance;
         emailpanel.setLayout(new GridLayout(0, 1));
         emailpanel.setBorder(BorderFactory.createTitledBorder("Email"));
 
-        for(int i=0; i<CVData.getInstance().getNames().size();i++)
-        {
-        new addRow(CVData.getInstance().getNames().get(i),"name", namepanel,180);   
+        for (String name : CVData.getInstance().getNames()) {
+                new addRow(name, "name", namepanel, 180);
         }
-                
-        for(int i=0; i<CVData.getInstance().getTitles().size();i++)
-        {
-        new addRow(CVData.getInstance().getTitles().get(i),"title", titlepanel,60);   
-        }        
-        for(int i=0; i<CVData.getInstance().getEmails().size();i++)
-        {
-        new addRow(CVData.getInstance().getEmails().get(i),"email",emailpanel,200);   
+        for (String title : CVData.getInstance().getTitles()) {
+                new addRow(title, "title", titlepanel, 60);
         }
-
-        
+        for (String email : CVData.getInstance().getEmails()) {
+            new addRow(email, "email", emailpanel, 200);
+        }
         titlepanel.revalidate();
         emailpanel.revalidate();
         namepanel.revalidate();
