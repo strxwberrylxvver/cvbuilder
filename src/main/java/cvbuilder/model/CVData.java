@@ -16,7 +16,8 @@ public class CVData {
     private ArrayList<String> names = new ArrayList<>();
     private ArrayList<String> titles = new ArrayList<>();
     private ArrayList<String> emails = new ArrayList<>();
-    private ArrayList<String> references = new ArrayList<>();
+    private ArrayList<String> references1 = new ArrayList<>();
+    private ArrayList<String> references2 = new ArrayList<>();
 
     public ArrayList<String> getNames() {
         return names;
@@ -42,12 +43,19 @@ public class CVData {
         this.emails = emails;
     }
 
-    public ArrayList<String> getReferences() {
-        return references;
+    public ArrayList<String> getReferences1() {
+        return references1;
     }
 
-    public void setReferences(ArrayList<String> references) {
-        this.references = references;
+    public void setReferences1(ArrayList<String> references) {
+        this.references1 = references;
+    }
+    public ArrayList<String> getReferences2() {
+        return references2;
+    }
+
+    public void setReferences2(ArrayList<String> references) {
+        this.references2 = references;
     }
 
     private CVData(){
@@ -90,32 +98,25 @@ public void readSuperCsv(String filename) {
                 case "references" -> {
                     switch (v[1].toLowerCase()) {
                         case "referee 1" -> {
-                            for (int i = 2; i <= 5; i++) {
-                                references.add(v[i]);
-                            }
-                            for (int i = 6; i < v.length; i++) {
-                                references.add(v[i]);
+                            for (int i = 2; i < v.length; i++) {
+                                references1.add(v[i]);
                             }
                         }
                         case "referee 2" -> {
-                            for (int i = 2; i <= 5; i++) {
-                                references.add(v[i]);
-                            }
-                            for (int i = 6; i < v.length; i++) {
-                                references.add(v[i]);
+                            for (int i = 2; i < v.length; i++) {
+                                references2.add(v[i]);
                             }
                         }
                     }
-
+                }
                 }
             }
         }
         catch (Exception e) {
         e.printStackTrace();
     }
-    System.out.println(names);
-    System.out.println(titles);
-    System.out.println(emails);
+    System.out.println(references1);
+    System.out.println(references2);
 }
 
     public void writeSuperCsv(String filename)
@@ -130,8 +131,14 @@ public void readSuperCsv(String filename) {
             bw.newLine();
             bw.write("User,Email," + String.join(",", emails));
             bw.newLine();
-
-
+            if (references1.size() >= 2) {
+                bw.write("References,Referee 1," + references1.get(0) + "," + references1.get(1));
+                bw.newLine();
+            }
+            if (references2.size() >= 2) {
+                bw.write("References,Referee 2," + references2.get(0) + "," + references2.get(1));
+                bw.newLine();
+            }
         }
         catch(Exception e)
         {

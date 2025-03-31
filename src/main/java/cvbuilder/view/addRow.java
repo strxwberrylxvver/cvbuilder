@@ -3,6 +3,7 @@ package cvbuilder.view;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.*;
 
 import cvbuilder.model.CVData;
@@ -77,7 +78,31 @@ public class addRow extends JPanel implements ActionListener {
                 JRadioButton radioButton2 = (JRadioButton) parentPanel2.getComponent(0);
                 String input = JOptionPane.showInputDialog(null, "Enter New Text", radioButton2.getText());
                 if (input != null) {
+                    switch (attribute) {
+                        case "Name" -> {
+                            ArrayList<String> names = CVData.getInstance().getNames();
+                            int index = names.indexOf(word);
+                            if (index != -1) {
+                                names.set(index, input);
+                            }
+                        }
+                        case "Title" -> {
+                            ArrayList<String> titles = CVData.getInstance().getTitles();
+                            int index = titles.indexOf(word);
+                            if (index != -1) {
+                                titles.set(index, input);
+                            }
+                        }
+                        case "Email" -> {
+                            ArrayList<String> emails = CVData.getInstance().getEmails();
+                            int index = emails.indexOf(word);
+                            if (index != -1) {
+                                emails.set(index, input);
+                            }
+                        }
+                    }
                     radioButton2.setText(input);
+                    word = input;
                     System.out.println("User input: " + input);
                 }
                 CVData.getInstance().writeSuperCsv("data/cv_repo_3.csv");
