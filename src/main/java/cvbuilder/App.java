@@ -12,7 +12,7 @@ public class App {
     public static ArrayList<String> names = new ArrayList<>();
     public static void main(String[] args) {
         CVData.getInstance();
-        MainViewer mv = MainViewer.getInstance();
+        MainViewer.getInstance();
     }
     
 }

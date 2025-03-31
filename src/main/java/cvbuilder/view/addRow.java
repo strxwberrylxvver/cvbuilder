@@ -11,51 +11,45 @@ import cvbuilder.model.CVData;
 
 
 
-public class addRow implements ActionListener {
+public class addRow extends JPanel implements ActionListener {
     private String value = "";
     private String attribute;
-    private ButtonGroup bg = new ButtonGroup();
-    private JPanel row;
     private JRadioButton j;
     private String word;
 
-    public addRow(String word, String attribute, JPanel panel, int jsize) {
+    public addRow(String word, String attribute, ButtonGroup buttonGroup) {
       this.word = word;
       this.attribute = attribute;
 
-            if ("name".equals(attribute)) {
+            if ("Name".equals(attribute)) {
                 j = new JRadioButton(word);
-            } else if ("title".equals(attribute)) {
+            } else if ("Title".equals(attribute)) {
                 j = new JRadioButton(word);
-            } else if ("email".equals(attribute)) {
+            } else if ("Email".equals(attribute)) {
                 j = new JRadioButton(word);
             } else {
                 value = "";
             }
 
-            row = new JPanel();
             JButton e = new JButton("Edit");
             JButton d = new JButton("Delete");
 
-            j.setPreferredSize(new Dimension(jsize, 30));
+            j.setPreferredSize(new Dimension(200, 30));
             j.addActionListener(this);
             j.setActionCommand("Choose");
-            row.add(j);
+            this.add(j);
+            buttonGroup.add(j);
 
-            e.setPreferredSize(new Dimension(65, 25));
+
+        e.setPreferredSize(new Dimension(65, 25));
             e.addActionListener(this);
             e.setActionCommand("Edit");
-            row.add(e);
+            this.add(e);
 
             d.setPreferredSize(new Dimension(70, 25));
             d.addActionListener(this);
             d.setActionCommand("Delete");
-            row.add(d);
-
-            bg.add(j);
-            row.repaint();
-            panel.add(row, BorderLayout.CENTER);
-
+            this.add(d);
 }
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -72,17 +66,13 @@ public class addRow implements ActionListener {
                         case "title" -> CVData.getInstance().getTitles().remove(value);
                         case "email" -> CVData.getInstance().getEmails().remove(value);
                     }
-                    JPanel parentContainer = (JPanel) row.getParent();
-                    parentContainer.remove(row);
-                    parentContainer.revalidate();
-                    parentContainer.repaint();
-                            break;
+                    this.getParent().remove(this);
+                    this.getParent().revalidate();
+                    this.getParent().repaint();
                     }
-
-                MainViewer.getInstance().addPanel();
-              //  CVData.getInstance().writeSuperCsv("userprofile.csv");
+                //AddPanel();
+                //  CVData.getInstance().writeSuperCsv("userprofile.csv");
                 break;
-
             case "Edit":
                 JButton button2 = (JButton) e.getSource();
                 JPanel parentPanel2 = (JPanel) button2.getParent();
@@ -91,8 +81,6 @@ public class addRow implements ActionListener {
                 if (input != null) {
                     radioButton2.setText(input);
                     System.out.println("User input: " + input);
-
-
                 }
                 //CVData.getInstance().writeSuperCsv("userprofile.csv");
                 break;
