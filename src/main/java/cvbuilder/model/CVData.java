@@ -115,8 +115,6 @@ public void readSuperCsv(String filename) {
         catch (Exception e) {
         e.printStackTrace();
     }
-    System.out.println(references1);
-    System.out.println(references2);
 }
 
     public void writeSuperCsv(String filename)

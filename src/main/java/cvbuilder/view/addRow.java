@@ -39,8 +39,7 @@ public class addRow extends JPanel implements ActionListener {
             this.add(j);
             buttonGroup.add(j);
 
-
-        e.setPreferredSize(new Dimension(65, 25));
+            e.setPreferredSize(new Dimension(65, 25));
             e.addActionListener(this);
             e.setActionCommand("Edit");
             this.add(e);
@@ -49,7 +48,8 @@ public class addRow extends JPanel implements ActionListener {
             d.addActionListener(this);
             d.setActionCommand("Delete");
             this.add(d);
-}
+
+    }
     @Override
     public void actionPerformed(ActionEvent e) {
 
