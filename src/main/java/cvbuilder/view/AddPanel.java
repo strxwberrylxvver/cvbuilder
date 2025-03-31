@@ -12,6 +12,9 @@ public class AddPanel extends JPanel {
         for (String item : items) {
             add(new addRow(item, title, buttonGroup));
         }
+        for (String item:items){
+            //add(new addReference(item, title, buttonGroup));
+        }
     }
 
 }

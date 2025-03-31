@@ -3,8 +3,6 @@ package cvbuilder.view;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Arrays;
 import javax.swing.*;
 
 import cvbuilder.model.CVData;
@@ -57,21 +55,21 @@ public class addRow extends JPanel implements ActionListener {
         switch (e.getActionCommand()) {
 
             case "Delete":
-                JButton button = (JButton) e.getSource();
-                JPanel parentPanel = (JPanel) button.getParent();
                 int response = JOptionPane.showConfirmDialog(null, "Would you like to delete?");
                 if (response == JOptionPane.YES_OPTION) {
                     switch (attribute) {
-                        case "name" -> CVData.getInstance().getNames().remove(value);
-                        case "title" -> CVData.getInstance().getTitles().remove(value);
-                        case "email" -> CVData.getInstance().getEmails().remove(value);
+                        case "Name" -> CVData.getInstance().getNames().remove(word);
+                        case "Title" -> CVData.getInstance().getTitles().remove(word);
+                        case "Email" -> CVData.getInstance().getEmails().remove(word);
                     }
-                    this.getParent().remove(this);
-                    this.getParent().revalidate();
-                    this.getParent().repaint();
+                    Container parent = getParent();
+                    if (parent != null) {
+                        parent.remove(addRow.this);
+                        parent.revalidate();
+                        parent.repaint();
                     }
-                //AddPanel();
-                //  CVData.getInstance().writeSuperCsv("userprofile.csv");
+                    }
+                CVData.getInstance().writeSuperCsv("data/cv_repo_3.csv");
                 break;
             case "Edit":
                 JButton button2 = (JButton) e.getSource();
@@ -82,7 +80,7 @@ public class addRow extends JPanel implements ActionListener {
                     radioButton2.setText(input);
                     System.out.println("User input: " + input);
                 }
-                //CVData.getInstance().writeSuperCsv("userprofile.csv");
+                CVData.getInstance().writeSuperCsv("data/cv_repo_3.csv");
                 break;
 
             case "Choose":

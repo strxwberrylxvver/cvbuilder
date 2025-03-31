@@ -18,9 +18,9 @@ public class UserPanel extends JPanel {
         JPanel emailPanel = new AddPanel("Email", CVData.getInstance().getEmails(), emailGroup);
 
         JTabbedPane userTabs = new JTabbedPane();
-        userTabs.addTab("User Name", namePanel);
-        userTabs.addTab("User Title", titlePanel);
-        userTabs.addTab("User Email", emailPanel);
+        userTabs.addTab("Name", namePanel);
+        userTabs.addTab("Title", titlePanel);
+        userTabs.addTab("Email", emailPanel);
 
         add(userTabs, BorderLayout.CENTER);
     }
