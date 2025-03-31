@@ -20,12 +20,15 @@ private static MainViewer instance;
         this.setTitle("User Profile Builder");
         this.setSize(500, 400);
         this.setLayout(new BorderLayout());
+        this.setLocationRelativeTo(null);
 
         JTabbedPane tabs = new JTabbedPane();
         tabs.addTab("User",new UserPanel());
         tabs.addTab("References", new ReferencePanel());
 
         this.add(tabs, BorderLayout.CENTER);
+        this.add(new NavPanel(), BorderLayout.SOUTH);
+        this.add(new addMenu(this), BorderLayout.NORTH);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         }
