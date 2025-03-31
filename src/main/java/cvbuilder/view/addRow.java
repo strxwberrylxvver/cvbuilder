@@ -33,7 +33,7 @@ public class addRow extends JPanel implements ActionListener {
             JButton e = new JButton("Edit");
             JButton d = new JButton("Delete");
 
-            j.setPreferredSize(new Dimension(200, 30));
+            j.setPreferredSize(new Dimension(275, 30));
             j.addActionListener(this);
             j.setActionCommand("Choose");
             this.add(j);
