@@ -11,7 +11,6 @@ import cvbuilder.model.CVData;
 
 
 public class addRow extends JPanel implements ActionListener {
-    private String value = "";
     private String attribute;
     private JRadioButton j;
     private String word;
@@ -22,12 +21,12 @@ public class addRow extends JPanel implements ActionListener {
 
             if ("Name".equals(attribute)) {
                 j = new JRadioButton(word);
-            } else if ("Title".equals(attribute)) {
+            }
+            else if ("Title".equals(attribute)) {
                 j = new JRadioButton(word);
-            } else if ("Email".equals(attribute)) {
+            }
+            else if ("Email".equals(attribute)) {
                 j = new JRadioButton(word);
-            } else {
-                value = "";
             }
 
             JButton e = new JButton("Edit");
@@ -62,6 +61,8 @@ public class addRow extends JPanel implements ActionListener {
                         case "Name" -> CVData.getInstance().getNames().remove(word);
                         case "Title" -> CVData.getInstance().getTitles().remove(word);
                         case "Email" -> CVData.getInstance().getEmails().remove(word);
+                        case "Referee 1" -> CVData.getInstance().getReferences1().remove(word);
+                        case "Referee 2" -> CVData.getInstance().getReferences2().remove(word);
                     }
                     Container parent = getParent();
                     if (parent != null) {
@@ -99,6 +100,14 @@ public class addRow extends JPanel implements ActionListener {
                             if (index != -1) {
                                 emails.set(index, input);
                             }
+                        }
+                        case "Referee 1" -> {
+                            CVData.getInstance().getReferences1().remove(word);
+                            CVData.getInstance().getReferences1().add(input);
+                        }
+                        case "Referee 2" -> {
+                            CVData.getInstance().getReferences2().remove(word);
+                            CVData.getInstance().getReferences2().add(input);
                         }
                     }
                     radioButton2.setText(input);

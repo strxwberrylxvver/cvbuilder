@@ -13,17 +13,20 @@ public class AddPanel extends JPanel implements ActionListener {
     String title;
     ButtonGroup buttonGroup;
     JCheckBox check = new JCheckBox("Include");
+
     public AddPanel(String title, ArrayList<String> items, ButtonGroup buttonGroup) {
         this.title = title;
         this.buttonGroup = buttonGroup;
         this.check = check;
         setLayout(new GridLayout(0, 1));
         setBorder(BorderFactory.createTitledBorder(title));
-        if (title.equals("Title"))
+
+        if (title.equals("Title")||title.equals("Referee 2"))
         {
             this.add(check);
             check.setSelected(true);
         }
+
         for (String item : items) {
             add(new addRow(item, title, buttonGroup));
         }
@@ -50,6 +53,8 @@ public class AddPanel extends JPanel implements ActionListener {
                     case "Name" -> CVData.getInstance().getNames().add(newEntry);
                     case "Title" -> CVData.getInstance().getTitles().add(newEntry);
                     case "Email" -> CVData.getInstance().getEmails().add(newEntry);
+                    case "Referee 1" -> CVData.getInstance().getReferences1().add(newEntry);
+                    case "Referee 2" -> CVData.getInstance().getReferences2().add(newEntry);
                 }
                 this.add(new addRow(newEntry, title, buttonGroup));
                 revalidate();
