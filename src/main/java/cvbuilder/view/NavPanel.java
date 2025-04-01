@@ -7,17 +7,13 @@ import java.awt.event.ActionListener;
 public class NavPanel extends JPanel implements ActionListener {
     JButton prev = new JButton("Previous Section");
     JButton next = new JButton("Next Section");
-    private JTabbedPane mainTabs;
-    private JTabbedPane userTabs;
-    private JTabbedPane referenceTabs;
+    private JTabbedPane tabs;
 
-    public NavPanel(JTabbedPane mainTabs, JTabbedPane userTabs, JTabbedPane referenceTabs){
-        this.mainTabs= mainTabs;
-        this.userTabs= userTabs;
-        this.referenceTabs= referenceTabs;
-
+    public NavPanel(JTabbedPane tabs){
+        this.tabs= tabs;
         this.prev = prev;
         this.next = next;
+
         prev.addActionListener(this);
         prev.setActionCommand("Previous");
         next.addActionListener(this);
@@ -28,24 +24,13 @@ public class NavPanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        boolean isNext = e.getSource() == next;
-        JTabbedPane currentTabPane = (mainTabs.getSelectedIndex() == 0) ? userTabs : referenceTabs;
+        int currentTab = tabs.getSelectedIndex();
+        int totalTabs = tabs.getTabCount();
 
-        int currentIndex = currentTabPane.getSelectedIndex();
-        int tabCount = currentTabPane.getTabCount();
-
-        if (isNext) {
-            if (currentIndex < tabCount - 1) {
-                currentTabPane.setSelectedIndex(currentIndex + 1);
-            } else {
-                mainTabs.setSelectedIndex(Math.min(mainTabs.getSelectedIndex() + 1, mainTabs.getTabCount() - 1));
-            }
-        } else {
-            if (currentIndex > 0) {
-                currentTabPane.setSelectedIndex(currentIndex - 1);
-            } else {
-                mainTabs.setSelectedIndex(Math.max(mainTabs.getSelectedIndex() - 1, 0));
-            }
+        if ("Previous".equals(e.getActionCommand()) && currentTab > 0) {
+            tabs.setSelectedIndex(currentTab - 1);
+        } else if ("Next".equals(e.getActionCommand()) && currentTab < totalTabs - 1) {
+            tabs.setSelectedIndex(currentTab + 1);
         }
     }
 }

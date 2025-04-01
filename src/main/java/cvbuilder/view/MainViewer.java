@@ -27,7 +27,7 @@ private static MainViewer instance;
         tabs.addTab("References", new ReferencePanel());
 
         this.add(tabs, BorderLayout.CENTER);
-        this.add(new NavPanel(tabs, tabs, tabs), BorderLayout.SOUTH);
+        this.add(new NavPanel(tabs), BorderLayout.SOUTH);
         this.add(new addMenu(this), BorderLayout.NORTH);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
