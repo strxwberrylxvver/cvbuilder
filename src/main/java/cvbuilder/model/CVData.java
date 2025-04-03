@@ -129,12 +129,12 @@ public void readSuperCsv(String filename) {
             bw.newLine();
             bw.write("User,Email," + String.join(",", emails));
             bw.newLine();
-            if (references1.size() >= 2) {
-                bw.write("References,Referee 1," + references1.get(0) + "," + references1.get(1));
+            if (!references1.isEmpty()) {
+                bw.write("References,Referee 1," + String.join(",", references1));
                 bw.newLine();
             }
-            if (references2.size() >= 2) {
-                bw.write("References,Referee 2," + references2.get(0) + "," + references2.get(1));
+            if (!references2.isEmpty()) {
+                bw.write("References,Referee 2," + String.join(",", references2));
                 bw.newLine();
             }
         }

@@ -22,10 +22,7 @@ public class addRow extends JPanel implements ActionListener {
             if ("Name".equals(attribute)) {
                 j = new JRadioButton(word);
             }
-            else if ("Title".equals(attribute)) {
-                j = new JRadioButton(word);
-            }
-            else if ("Email".equals(attribute)) {
+            else {
                 j = new JRadioButton(word);
             }
 

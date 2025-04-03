@@ -11,8 +11,6 @@ public class NavPanel extends JPanel implements ActionListener {
 
     public NavPanel(JTabbedPane tabs){
         this.tabs= tabs;
-        this.prev = prev;
-        this.next = next;
 
         prev.addActionListener(this);
         prev.setActionCommand("Previous");

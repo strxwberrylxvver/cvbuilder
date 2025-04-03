@@ -12,8 +12,8 @@ public class ReferencePanel extends JPanel {
         ButtonGroup bref1 = new ButtonGroup();
         ButtonGroup bref2 = new ButtonGroup();
 
-        JPanel ref1panel = new AddPanel("Title", CVData.getInstance().getReferences1(), bref1);
-        JPanel ref2panel = new AddPanel("Email", CVData.getInstance().getReferences2(), bref2);
+        JPanel ref1panel = new AddPanel("Referee 1", CVData.getInstance().getReferences1(), bref1);
+        JPanel ref2panel = new AddPanel("Referee 2", CVData.getInstance().getReferences2(), bref2);
 
         JTabbedPane referTabs = new JTabbedPane();
         referTabs.addTab("Referee 1", ref1panel);
