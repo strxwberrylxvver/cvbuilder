@@ -39,7 +39,6 @@ public class addRow extends JPanel implements ActionListener {
           this.add(j);
           buttonGroup.add(j);
       }
-
       j.addActionListener(this);
       j.setActionCommand("Choose");
       JButton e = new JButton("Edit");

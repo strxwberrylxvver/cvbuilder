@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class AddPanel extends JPanel implements ActionListener {
     JTextField textInput = new JTextField(15);
-    JTextArea textArea = new JTextArea();
+    JTextArea textAreaInput = new JTextArea();
     String title;
     ButtonGroup buttonGroup;
     JCheckBox check = new JCheckBox("Include");
@@ -19,8 +19,8 @@ public class AddPanel extends JPanel implements ActionListener {
         this.title = title;
         this.buttonGroup = buttonGroup;
         this.check = check;
-        setLayout(new GridLayout(0, 1));
-        setBorder(BorderFactory.createTitledBorder(title));
+        this.setLayout(new GridLayout(0,1));
+        this.setBorder(BorderFactory.createTitledBorder(title));
 
         if (title.equals("Title")||title.equals("Referee 2"))
         {
@@ -35,14 +35,22 @@ public class AddPanel extends JPanel implements ActionListener {
         check.setActionCommand("Check");
 
         JPanel inputPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-
-        textInput = new JTextField(15);
         JButton addButton = new JButton("Add");
         addButton.setPreferredSize(new Dimension(65, 25));
         addButton.addActionListener(this);
         addButton.setActionCommand("Add");
 
-        inputPanel.add(textInput);
+        if (title.equals("Referee 1") || title.equals("Referee 2")) {
+            textAreaInput = new JTextArea(4, 30);
+            textAreaInput.setLineWrap(true);
+            textAreaInput.setWrapStyleWord(true);
+            JScrollPane scrollPane = new JScrollPane(textAreaInput);
+            inputPanel.add(scrollPane);
+        } else {
+            textInput = new JTextField(15);
+            inputPanel.add(textInput);
+        }
+
         inputPanel.add(addButton);
         this.add(inputPanel);
     }
@@ -50,7 +58,16 @@ public class AddPanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Add")) {
-            String newEntry = textInput.getText().trim();
+            String newEntry = "";
+
+            if (title.equals("Referee 1") || title.equals("Referee 2")) {
+                newEntry = textAreaInput.getText().trim();
+                textAreaInput.setText("");
+            } else {
+                newEntry = textInput.getText().trim();
+                textInput.setText("");
+            }
+
             if (!newEntry.isEmpty()) {
                 switch (title) {
                     case "Name" -> CVData.getInstance().getNames().add(newEntry);
@@ -60,10 +77,9 @@ public class AddPanel extends JPanel implements ActionListener {
                     case "Referee 2" -> CVData.getInstance().getReferences2().add(newEntry);
                 }
                 this.add(new addRow(newEntry, title, buttonGroup));
-                revalidate();
-                repaint();
+                this.revalidate();
+                this.repaint();
                 CVData.getInstance().writeSuperCsv("data/cv_repo_3.csv");
-                textInput.setText("");
             }
         }
         else if(e.getActionCommand().equals("Check")){
