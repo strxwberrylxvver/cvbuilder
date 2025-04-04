@@ -1,6 +1,7 @@
 package cvbuilder.view;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -27,38 +28,47 @@ public class NavPanel extends JPanel implements ActionListener {
 
         switch (e.getActionCommand()) {
             case "Previous":
+                if (tabs.getTitleAt(currentTab).equals("Preview")) {
+                    tabs.removeTabAt(currentTab);
+                }
                 if (currentTab > 0) {
                     tabs.setSelectedIndex(currentTab - 1);
                 }
                 break;
 
             case "Next":
-                int result = JOptionPane.showConfirmDialog(
-                        this,
-                        "Are you ready to preview your CV?",
-                        "Confirm Navigation",
-                        JOptionPane.YES_NO_OPTION
-                );
+                int currentTabIndex = tabs.getSelectedIndex();
+                int nextTabIndex = currentTabIndex + 1;
 
-                if (result == JOptionPane.YES_OPTION) {
-                    boolean previewExists = false;
+                if (nextTabIndex == tabs.getTabCount()) {
+                    int result = JOptionPane.showConfirmDialog(
+                            this,
+                            "Are you ready to preview your CV?",
+                            "Confirm Preview",
+                            JOptionPane.YES_NO_OPTION
+                    );
+                    if (result == JOptionPane.YES_OPTION) {
+                        tabs.addTab("Preview", new CVPreview());
+                        tabs.setSelectedIndex(tabs.getTabCount() - 1);
+                    }
+                } else {
 
-                    for (int i = 0; i < tabs.getTabCount(); i++) {
-                        if (tabs.getTitleAt(i).equals("Preview")) {
-                            tabs.setComponentAt(i, new CVPreview());
-                            tabs.setSelectedIndex(i);
-                            previewExists = true;
-                            break;
+                    JPanel currentPanel = (JPanel) tabs.getComponentAt(currentTabIndex);
+                    boolean hasSelected = false;
+
+                    for (Component comp : currentPanel.getComponents()) {
+                        if (comp instanceof addRow row) {
+                            if (row.getRadioButton().isSelected()) {
+                                hasSelected = true;
+                                break;
+                            }
                         }
                     }
-                if (!previewExists) {
-                    tabs.addTab("Preview", new CVPreview());
-                    tabs.setSelectedIndex(tabs.getTabCount() - 1);
-                }
 
-            } else {
-                tabs.setSelectedIndex(currentTab + 1);
-            }
+
+                        tabs.setSelectedIndex(nextTabIndex);
+                }
+                break;
         }
     }
 }

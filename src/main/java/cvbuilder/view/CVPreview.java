@@ -21,6 +21,14 @@ public class CVPreview extends JPanel {
         StringBuilder cvContent = new StringBuilder();
         CVData data = CVData.getInstance();
 
+        if (AddPanel.includeTitle) {
+            cvContent.append("Title: ").append(data.getSelectedTitle()).append("\n");
+        }
+        if (AddPanel.includeRef2) {
+            cvContent.append("\nReferee 2:\n");
+            cvContent.append("- ").append(data.getSelectedReference2().replace("\n", " | ")).append("\n");
+        }
+
         cvContent.append("Name: ").append(data.getSelectedName()).append("\n");
         cvContent.append("Title: ").append(data.getSelectedTitle()).append("\n");
         cvContent.append("Email: ").append(data.getSelectedEmail()).append("\n");

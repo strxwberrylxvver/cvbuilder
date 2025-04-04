@@ -14,6 +14,10 @@ public class addRow extends JPanel implements ActionListener {
     private String attribute;
     private JRadioButton j;
     private String word;
+
+    public JRadioButton getRadioButton() {
+        return j;
+    }
     public addRow(String word, String attribute, ButtonGroup buttonGroup) {
       this.word = word;
       this.attribute = attribute;

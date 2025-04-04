@@ -14,6 +14,8 @@ public class AddPanel extends JPanel implements ActionListener {
     String title;
     ButtonGroup buttonGroup;
     JCheckBox check = new JCheckBox("Include");
+    public static boolean includeTitle = true;
+    public static boolean includeRef2 = true;
 
     public AddPanel(String title, ArrayList<String> items, ButtonGroup buttonGroup) {
         this.title = title;
@@ -82,8 +84,12 @@ public class AddPanel extends JPanel implements ActionListener {
                 CVData.getInstance().writeSuperCsv("data/cv_repo_3.csv");
             }
         }
-        else if(e.getActionCommand().equals("Check")){
-
+        else if (e.getActionCommand().equals("Check")) {
+            if (title.equals("Title")) {
+                AddPanel.includeTitle = check.isSelected();
+            } else if (title.equals("Referee 2")) {
+                AddPanel.includeRef2 = check.isSelected();
+            }
         }
     }
 }
