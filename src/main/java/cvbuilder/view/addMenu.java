@@ -53,7 +53,7 @@ public class addMenu extends JMenuBar implements ActionListener{
                 int returnVal = chooser.showOpenDialog(null);
                 if(returnVal == JFileChooser.APPROVE_OPTION) {
                     System.out.println("You chose to open this file: ");
-                            //chooser.getSelectedFile());
+                            chooser.getSelectedFile();
                 }
                 break;
 

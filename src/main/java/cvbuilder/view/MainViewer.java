@@ -18,7 +18,7 @@ private static MainViewer instance;
 
     private MainViewer() {
         this.setTitle("User Profile Builder");
-        this.setSize(500, 400);
+        this.setSize(700, 600);
         this.setLayout(new BorderLayout());
         this.setLocationRelativeTo(null);
 

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class AddPanel extends JPanel implements ActionListener {
     JTextField textInput = new JTextField(15);
+    JTextArea textArea = new JTextArea();
     String title;
     ButtonGroup buttonGroup;
     JCheckBox check = new JCheckBox("Include");
@@ -32,7 +33,9 @@ public class AddPanel extends JPanel implements ActionListener {
         }
         check.addActionListener(this);
         check.setActionCommand("Check");
+
         JPanel inputPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+
         textInput = new JTextField(15);
         JButton addButton = new JButton("Add");
         addButton.setPreferredSize(new Dimension(65, 25));

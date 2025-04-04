@@ -98,13 +98,19 @@ public void readSuperCsv(String filename) {
                 case "references" -> {
                     switch (v[1].toLowerCase()) {
                         case "referee 1" -> {
-                            for (int i = 2; i < v.length; i++) {
-                                references1.add(v[i]);
+                            if (v[1].toLowerCase().equals("referee 1")) {
+                                for (int i = 2; i < v.length; i++) {
+                                    String[] details = v[i].split("%%%%");
+                                    references1.add(String.join("\n", details));
+                                }
                             }
                         }
                         case "referee 2" -> {
-                            for (int i = 2; i < v.length; i++) {
-                                references2.add(v[i]);
+                            if (v[1].toLowerCase().equals("referee 2")) {
+                                for (int i = 2; i < v.length; i++) {
+                                    String[] details = v[i].split("%%%%");
+                                    references2.add(String.join("\n", details));
+                                }
                             }
                         }
                     }
@@ -129,14 +135,22 @@ public void readSuperCsv(String filename) {
             bw.newLine();
             bw.write("User,Email," + String.join(",", emails));
             bw.newLine();
+
             if (!references1.isEmpty()) {
-                bw.write("References,Referee 1," + String.join(",", references1));
+                bw.write("References,Referee 1");
+                for (String ref : references1) {
+                    bw.write("," + ref.replace("\n", "%%%%"));
+                }
                 bw.newLine();
             }
             if (!references2.isEmpty()) {
-                bw.write("References,Referee 2," + String.join(",", references2));
+                bw.write("References,Referee 2");
+                for (String ref : references2) {
+                    bw.write("," + ref.replace("\n", "%%%%"));
+                }
                 bw.newLine();
             }
+
         }
         catch(Exception e)
         {

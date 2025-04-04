@@ -14,36 +14,45 @@ public class addRow extends JPanel implements ActionListener {
     private String attribute;
     private JRadioButton j;
     private String word;
-
     public addRow(String word, String attribute, ButtonGroup buttonGroup) {
       this.word = word;
       this.attribute = attribute;
 
-            if ("Name".equals(attribute)) {
-                j = new JRadioButton(word);
-            }
-            else {
-                j = new JRadioButton(word);
-            }
+      if (attribute.equals("Referee 1") || attribute.equals("Referee 2")) {
+          JTextArea textArea = new JTextArea(5, 30);
+          textArea.setText(word);
+          textArea.setEditable(false);
+          textArea.setLineWrap(true);
+          textArea.setWrapStyleWord(true);
+          textArea.setOpaque(false);
+          textArea.setFocusable(false);
+          textArea.setBorder(null);
+          j = new JRadioButton();
+          buttonGroup.add(j);
+          this.add(j);
+          this.add(textArea);
+      }
+      else
+      {
+          j = new JRadioButton(word);
+          j.setPreferredSize(new Dimension(296, 30));
+          this.add(j);
+          buttonGroup.add(j);
+      }
 
-            JButton e = new JButton("Edit");
-            JButton d = new JButton("Delete");
+      j.addActionListener(this);
+      j.setActionCommand("Choose");
+      JButton e = new JButton("Edit");
+      JButton d = new JButton("Delete");
+      e.setPreferredSize(new Dimension(65, 25));
+      e.addActionListener(this);
+      e.setActionCommand("Edit");
+      this.add(e);
 
-            j.setPreferredSize(new Dimension(296, 30));
-            j.addActionListener(this);
-            j.setActionCommand("Choose");
-            this.add(j);
-            buttonGroup.add(j);
-
-            e.setPreferredSize(new Dimension(65, 25));
-            e.addActionListener(this);
-            e.setActionCommand("Edit");
-            this.add(e);
-
-            d.setPreferredSize(new Dimension(70, 25));
-            d.addActionListener(this);
-            d.setActionCommand("Delete");
-            this.add(d);
+      d.setPreferredSize(new Dimension(70, 25));
+      d.addActionListener(this);
+      d.setActionCommand("Delete");
+      this.add(d);
 
     }
     @Override
