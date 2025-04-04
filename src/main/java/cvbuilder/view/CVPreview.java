@@ -19,19 +19,17 @@ public class CVPreview extends JPanel {
         cvPreviewArea.setWrapStyleWord(true);
 
         StringBuilder cvContent = new StringBuilder();
-        cvContent.append("Name: ").append(String.join(", ", CVData.getInstance().getNames())).append("\n");
-        cvContent.append("Title: ").append(String.join(", ", CVData.getInstance().getTitles())).append("\n");
-        cvContent.append("Email: ").append(String.join(", ", CVData.getInstance().getEmails())).append("\n");
+        CVData data = CVData.getInstance();
+
+        cvContent.append("Name: ").append(data.getSelectedName()).append("\n");
+        cvContent.append("Title: ").append(data.getSelectedTitle()).append("\n");
+        cvContent.append("Email: ").append(data.getSelectedEmail()).append("\n");
 
         cvContent.append("\nReferee 1:\n");
-        for (String ref : CVData.getInstance().getReferences1()) {
-            cvContent.append("- ").append(ref.replace("\n", " | ")).append("\n");
-        }
+        cvContent.append("- ").append(data.getSelectedReference1().replace("\n", " | ")).append("\n");
 
         cvContent.append("\nReferee 2:\n");
-        for (String ref : CVData.getInstance().getReferences2()) {
-            cvContent.append("- ").append(ref.replace("\n", " | ")).append("\n");
-        }
+        cvContent.append("- ").append(data.getSelectedReference2().replace("\n", " | ")).append("\n");
 
         cvPreviewArea.setText(cvContent.toString());
 

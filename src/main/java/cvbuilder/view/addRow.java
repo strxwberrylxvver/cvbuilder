@@ -124,7 +124,15 @@ public class addRow extends JPanel implements ActionListener {
 
             case "Choose":
                 if (j.isSelected()) {
-                    System.out.println("Selected");
+                    CVData data = CVData.getInstance();
+                    switch (attribute) {
+                        case "Name" -> data.setSelectedName(word);
+                        case "Title" -> data.setSelectedTitle(word);
+                        case "Email" -> data.setSelectedEmail(word);
+                        case "Referee 1" -> data.setSelectedReference1(word);
+                        case "Referee 2" -> data.setSelectedReference2(word);
+                    }
+                    System.out.println("Selected " + attribute + ": " + word);
                 }
         break;
         }

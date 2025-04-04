@@ -18,6 +18,42 @@ public class CVData {
     private ArrayList<String> emails = new ArrayList<>();
     private ArrayList<String> references1 = new ArrayList<>();
     private ArrayList<String> references2 = new ArrayList<>();
+    private String selectedName = "";
+    private String selectedTitle = "";
+    private String selectedEmail = "";
+    private String selectedReference1 = "";
+    private String selectedReference2 = "";
+
+    public String getSelectedName()
+    {
+        return selectedName;
+    }
+    public void setSelectedName(String selectedName)
+    { this.selectedName = selectedName; }
+
+    public String getSelectedTitle()
+    { return selectedTitle; }
+
+    public void setSelectedTitle(String selectedTitle)
+    { this.selectedTitle = selectedTitle; }
+
+    public String getSelectedEmail()
+    { return selectedEmail; }
+
+    public void setSelectedEmail(String selectedEmail)
+    { this.selectedEmail = selectedEmail; }
+
+    public String getSelectedReference1() {
+        return selectedReference1;
+    }
+    public void setSelectedReference1(String selectedReference1)
+    { this.selectedReference1 = selectedReference1; }
+
+    public String getSelectedReference2()
+    { return selectedReference2; }
+
+    public void setSelectedReference2(String selectedReference2)
+    { this.selectedReference2 = selectedReference2; }
 
     public ArrayList<String> getNames() {
         return names;
